@@ -15,6 +15,8 @@
  */
 package org.japo.java.app;
 
+import static java.lang.Double.isNaN;
+import java.util.Locale;
 import org.japo.java.libraries.UtilesEntrada;
 
 /**
@@ -42,22 +44,22 @@ public final class App {
         double c = UtilesEntrada.obtener(
                 String.format(USR_MSG, 'c'), ERR_MSG);
         System.out.println("---");
-        System.out.println(calcular(a, b , c));
+        calcular(a, b, c);
     }
 
-    public static final double calcular(double x, double y, double z) {
-        double x1 = 0;
+    public static void calcular(double a, double b, double c) {
+        double x1;
         double x2 = 0;
 
-        double r = Math.sqrt(y * y - 4 * x * z);
-        if (r == Double.NaN) {
-            System.out.printf("Solución imaginaria");
+        double r = Math.sqrt(b * b - 4 * a * c);
+        if (isNaN(r)) {
+            System.out.printf("Solución imaginaria%n");
         } else {
-            x1 = (-y + r) / 2 * x;
-            x2 = (-y - r) / 2 * x;
-            System.out.printf("Solución 1 ....: %.2f%n", x1);
-            System.out.printf("Solución 1 ....: %.2f%n", x2);
+            x1 = (-b + r) / 2 * a;
+            x2 = (-b - r) / 2 * a;
+            System.out.printf(Locale.ENGLISH, "Solución 1 ....: %.1f%n", x1);
+            System.out.printf(Locale.ENGLISH, "Solución 2 ....: %.1f%n", x2);
         }
-    return r;
+
     }
 }
